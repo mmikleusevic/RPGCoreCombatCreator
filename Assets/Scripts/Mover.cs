@@ -5,10 +5,22 @@ public class Mover : MonoBehaviour
 {
     [SerializeField] private Transform target;
 
+    private NavMeshAgent agent;
+    private Ray lastRay;
+
+    private void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
+
     private void Update()
     {
-        NavMeshAgent navMeshAgent = GetComponent<NavMeshAgent>();
+        if (Input.GetMouseButtonDown(0))
+        {
+            lastRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        }
 
-        navMeshAgent.destination = target.position;
+        Debug.DrawRay(lastRay.origin, lastRay.direction * 100);
+        agent.destination = target.position;
     }
 }
