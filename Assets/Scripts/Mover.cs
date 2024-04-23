@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private Transform target;
+    private const string FORWARD_SPEED = "forwardSpeed";
+
+    [SerializeField] private Animator animator;
 
     private NavMeshAgent agent;
 
@@ -18,6 +21,8 @@ public class Mover : MonoBehaviour
         {
             MoveToCursor();
         }
+
+        UpdateAnimator();
     }
 
     private void MoveToCursor()
@@ -31,5 +36,14 @@ public class Mover : MonoBehaviour
         {
             agent.destination = hit.point;
         }
+    }
+
+    private void UpdateAnimator()
+    {
+        Vector3 velocity = agent.velocity;
+        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+        float speed = localVelocity.z;
+
+        animator.SetFloat(FORWARD_SPEED, speed);
     }
 }

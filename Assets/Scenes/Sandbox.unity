@@ -3100,9 +3100,25 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1825244801}
+    - target: {fileID: 3802998348912601132, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 5366734711470745181}
     - target: {fileID: 6944710460972312987, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577720798627603449, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: m_Speed
+      value: 5.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577720798627603449, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: m_Acceleration
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577720798627603449, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 5000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3131,8 +3147,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5366734711470745174}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
+  m_Controller: {fileID: 9100000, guid: d79eb445d75cbf14b8fa7902146a70e3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
