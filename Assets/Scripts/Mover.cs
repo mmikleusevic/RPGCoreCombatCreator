@@ -6,7 +6,6 @@ public class Mover : MonoBehaviour
     [SerializeField] private Transform target;
 
     private NavMeshAgent agent;
-    private Ray lastRay;
 
     private void Start()
     {
@@ -17,10 +16,20 @@ public class Mover : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            lastRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            MoveToCursor();
         }
+    }
 
-        Debug.DrawRay(lastRay.origin, lastRay.direction * 100);
-        agent.destination = target.position;
+    private void MoveToCursor()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        bool hasHit = Physics.Raycast(ray, out hit);
+
+        if (hasHit)
+        {
+            agent.destination = hit.point;
+        }
     }
 }
