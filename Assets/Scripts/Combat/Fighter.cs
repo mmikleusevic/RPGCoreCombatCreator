@@ -7,12 +7,13 @@ namespace RPG.Combat
     public class Fighter : MonoBehaviour, IAction
     {
         private const string ATTACK = "attack";
+        private const string STOP_ATTACK = "stopAttack";
 
         [SerializeField] private float weaponRange = 2f;
         [SerializeField] private float timeBetweenAttacks = 2f;
         [SerializeField] private int weaponDamage = 5;
 
-        private Transform targetTransform;
+        private Health target;
         private Mover mover;
         private ActionScheduler actionScheduler;
         private Animator animator;
@@ -30,11 +31,12 @@ namespace RPG.Combat
         {
             timeSinceLastAttack += Time.deltaTime;
 
-            if (targetTransform == null) return;
+            if (target == null) return;
+            if (target.IsDead()) return;
 
             if (!GetIsInRange())
             {
-                mover.MoveTo(targetTransform.position);
+                mover.MoveTo(target.transform.position);
                 return;
             }
 
@@ -44,18 +46,19 @@ namespace RPG.Combat
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, targetTransform.position) < weaponRange;
+            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
         }
 
         public void Attack(CombatTarget combatTarget)
         {
             actionScheduler.StartAction(this);
-            targetTransform = combatTarget.transform;
+            target = combatTarget.transform.GetComponent<Health>();
         }
 
         public void Cancel()
         {
-            targetTransform = null;
+            animator.SetTrigger(STOP_ATTACK);
+            target = null;
         }
 
         private void AttackBehaviour()
@@ -71,10 +74,9 @@ namespace RPG.Combat
         //Animation Event
         private void Hit()
         {
-            if (targetTransform == null) return;
+            if (target == null) return;
 
-            Health health = targetTransform.GetComponent<Health>();
-            health.TakeDamage(weaponDamage);
+            target.TakeDamage(weaponDamage);
         }
     }
 }
