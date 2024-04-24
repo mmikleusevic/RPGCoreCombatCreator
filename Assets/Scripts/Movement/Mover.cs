@@ -1,3 +1,4 @@
+using RPG.Combat;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,15 +11,23 @@ namespace RPG.Movement
         [SerializeField] private Animator animator;
 
         private NavMeshAgent navMeshAgent;
+        private Fighter fighter;
 
         private void Start()
         {
+            fighter = GetComponent<Fighter>();
             navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
         private void Update()
         {
             UpdateAnimator();
+        }
+
+        public void StartMoveAction(Vector3 destination)
+        {
+            fighter.Cancel();
+            MoveTo(destination);
         }
 
         public void MoveTo(Vector3 destination)
