@@ -9,11 +9,14 @@ namespace RPG.Combat
         private const string ATTACK = "attack";
 
         [SerializeField] private float weaponRange = 2f;
+        [SerializeField] private float timeBetweenAttacks = 2f;
 
         private Transform targetTransform;
         private Mover mover;
         private ActionScheduler actionScheduler;
         private Animator animator;
+
+        private float timeSinceLastAttack;
 
         private void Start()
         {
@@ -24,6 +27,8 @@ namespace RPG.Combat
 
         private void Update()
         {
+            timeSinceLastAttack += Time.deltaTime;
+
             if (targetTransform == null) return;
 
             if (!GetIsInRange())
@@ -55,7 +60,11 @@ namespace RPG.Combat
         //Animation Event
         private void AttackBehaviour()
         {
-            animator.SetTrigger(ATTACK);
+            if (timeBetweenAttacks < timeSinceLastAttack)
+            {
+                animator.SetTrigger(ATTACK);
+                timeSinceLastAttack = 0;
+            }
         }
     }
 }
