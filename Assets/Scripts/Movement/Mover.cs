@@ -9,11 +9,11 @@ namespace RPG.Movement
 
         [SerializeField] private Animator animator;
 
-        private NavMeshAgent agent;
+        private NavMeshAgent navMeshAgent;
 
         private void Start()
         {
-            agent = GetComponent<NavMeshAgent>();
+            navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
         private void Update()
@@ -23,12 +23,18 @@ namespace RPG.Movement
 
         public void MoveTo(Vector3 destination)
         {
-            agent.destination = destination;
+            navMeshAgent.destination = destination;
+            navMeshAgent.isStopped = false;
+        }
+
+        public void Stop()
+        {
+            navMeshAgent.isStopped = true;
         }
 
         private void UpdateAnimator()
         {
-            Vector3 velocity = agent.velocity;
+            Vector3 velocity = navMeshAgent.velocity;
             Vector3 localVelocity = transform.InverseTransformDirection(velocity);
             float speed = localVelocity.z;
 
