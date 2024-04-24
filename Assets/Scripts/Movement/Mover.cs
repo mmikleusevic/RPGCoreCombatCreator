@@ -1,4 +1,5 @@
 using RPG.Combat;
+using RPG.Core;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,11 +13,13 @@ namespace RPG.Movement
 
         private NavMeshAgent navMeshAgent;
         private Fighter fighter;
+        private ActionScheduler actionScheduler;
 
         private void Start()
         {
             fighter = GetComponent<Fighter>();
             navMeshAgent = GetComponent<NavMeshAgent>();
+            actionScheduler = GetComponent<ActionScheduler>();
         }
 
         private void Update()
@@ -26,6 +29,7 @@ namespace RPG.Movement
 
         public void StartMoveAction(Vector3 destination)
         {
+            actionScheduler.StartAction(this);
             fighter.Cancel();
             MoveTo(destination);
         }
