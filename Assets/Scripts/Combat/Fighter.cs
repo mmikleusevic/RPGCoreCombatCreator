@@ -6,16 +6,20 @@ namespace RPG.Combat
 {
     public class Fighter : MonoBehaviour, IAction
     {
+        private const string ATTACK = "attack";
+
         [SerializeField] private float weaponRange = 2f;
 
         private Transform targetTransform;
         private Mover mover;
         private ActionScheduler actionScheduler;
+        private Animator animator;
 
         private void Start()
         {
             mover = GetComponent<Mover>();
             actionScheduler = GetComponent<ActionScheduler>();
+            animator = GetComponent<Animator>();
         }
 
         private void Update()
@@ -29,6 +33,7 @@ namespace RPG.Combat
             }
 
             mover.Cancel();
+            AttackBehaviour();
         }
 
         private bool GetIsInRange()
@@ -45,6 +50,12 @@ namespace RPG.Combat
         public void Cancel()
         {
             targetTransform = null;
+        }
+
+        //Animation Event
+        private void AttackBehaviour()
+        {
+            animator.SetTrigger(ATTACK);
         }
     }
 }
