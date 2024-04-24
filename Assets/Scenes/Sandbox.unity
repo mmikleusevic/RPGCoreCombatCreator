@@ -3316,6 +3316,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4904414427626449270, guid: 05749b0ffe7ea8648862a1a6d00c2ffd, type: 3}
+      propertyPath: health
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5796062713720830608, guid: 05749b0ffe7ea8648862a1a6d00c2ffd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.2714615
@@ -3412,6 +3416,10 @@ PrefabInstance:
     - target: {fileID: 510092739831509597, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723727013695566317, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: weaponDamage
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3299620812311665625, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
       propertyPath: mover
