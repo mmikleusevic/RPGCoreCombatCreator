@@ -1,14 +1,13 @@
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
-using System;
 using UnityEngine;
 
 namespace RPG.Control
 {
     public class AIController : MonoBehaviour
     {
-        private const string PLAYER_TAG = "Player"; 
+        private const string PLAYER_TAG = "Player";
 
         [SerializeField] private float chaseDistance = 5f;
         [SerializeField] private float suspicionTime = 2f;
@@ -90,7 +89,7 @@ namespace RPG.Control
 
         private void CycleWaypoint()
         {
-            currentWaypointIndex = patrolPath.GetNextIndex(currentWaypointIndex);  
+            currentWaypointIndex = patrolPath.GetNextIndex(currentWaypointIndex);
         }
 
         private Vector3 GetCurrentWaypoint()
@@ -99,8 +98,8 @@ namespace RPG.Control
         }
 
         private bool AtWaypoint()
-        {                
-            return Vector3.Distance(transform.position, GetCurrentWaypoint()) < waypointTolerance;          
+        {
+            return Vector3.Distance(transform.position, GetCurrentWaypoint()) < waypointTolerance;
         }
 
         private void SuspicionBehaviour()
