@@ -1,3 +1,4 @@
+using RPG.Combat;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,10 +11,14 @@ namespace RPG.Control
         [SerializeField] float chaseDistance = 5f;
 
         private NavMeshAgent agent;
+        private Fighter fighter;
+        private GameObject player;
 
         private void Start()
         {
             agent = GetComponent<NavMeshAgent>();
+            fighter = GetComponent<Fighter>();
+            player = GameObject.FindWithTag(PLAYER_TAG);
         }
 
         private void OnDrawGizmos()
@@ -23,16 +28,31 @@ namespace RPG.Control
 
         private void Update()
         {
-            if (DistanceToPlayer() < chaseDistance)
+            if (InChaseRange() && fighter.CanAttack(player))
             {
-                print(gameObject.name + " should chase");
+                agent.isStopped = false;
+
+                if (DistanceToPlayer() < agent.stoppingDistance)
+                {
+                    agent.isStopped = true;
+                    fighter.Attack(player);
+                }
             }
+            else
+            {
+                agent.isStopped = true;
+                fighter.Cancel();
+            }
+        }
+
+        private bool InChaseRange()
+        {
+            return DistanceToPlayer() < chaseDistance;
         }
 
         private float DistanceToPlayer()
         {
-            GameObject playerGameObject = GameObject.FindWithTag(PLAYER_TAG);
-            return Vector3.Distance(transform.position, playerGameObject.transform.position);
+            return Vector3.Distance(transform.position, player.transform.position);
         }
     }
 }

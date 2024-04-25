@@ -114,6 +114,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7577720798627603449, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: m_Speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8823487103311582656, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
       propertyPath: healthPoints
       value: 20
@@ -193,3 +197,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3922dfb50916334ba801a488b44b129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chaseDistance: 5
