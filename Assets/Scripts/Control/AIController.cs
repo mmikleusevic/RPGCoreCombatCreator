@@ -10,13 +10,16 @@ namespace RPG.Control
         private const string PLAYER_TAG = "Player"; 
 
         [SerializeField] float chaseDistance = 5f;
+        [SerializeField] float suspicionTime = 2f;
 
         private Fighter fighter;
         private Mover mover;
         private Health health;
         private GameObject player;
+        private ActionScheduler actionScheduler;
 
         private Vector3 guardPosition;
+        private float timeSinceLastSawPlayer = Mathf.Infinity;
 
         private void Start()
         {
@@ -24,6 +27,7 @@ namespace RPG.Control
             mover = GetComponent<Mover>();
             health = GetComponent<Health>();
             player = GameObject.FindWithTag(PLAYER_TAG);
+            actionScheduler = GetComponent<ActionScheduler>();
             guardPosition = transform.position;
         }
 
@@ -39,13 +43,34 @@ namespace RPG.Control
 
             if (InAttackRange() && fighter.CanAttack(player))
             {
-                mover.MoveTo(player.transform.position);
-                fighter.Attack(player);
+                timeSinceLastSawPlayer = 0;
+                AttackBehaviour();
+            }
+            else if (timeSinceLastSawPlayer < suspicionTime)
+            {
+                SuspicionBehaviour();
             }
             else
             {
-                mover.StartMoveAction(guardPosition);
+                GuardBehaviour();
             }
+
+            timeSinceLastSawPlayer += Time.deltaTime;
+        }
+
+        private void GuardBehaviour()
+        {
+            mover.StartMoveAction(guardPosition);
+        }
+
+        private void SuspicionBehaviour()
+        {
+            actionScheduler.CancelCurrentAction();
+        }
+
+        private void AttackBehaviour()
+        {
+            fighter.Attack(player);
         }
 
         private bool InAttackRange()
