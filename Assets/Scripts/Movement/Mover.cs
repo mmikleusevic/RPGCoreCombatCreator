@@ -9,6 +9,7 @@ namespace RPG.Movement
         private const string FORWARD_SPEED = "forwardSpeed";
 
         [SerializeField] private Animator animator;
+        [SerializeField] private float maxSpeed = 6f;
 
         private NavMeshAgent navMeshAgent;
         private ActionScheduler actionScheduler;
@@ -28,15 +29,16 @@ namespace RPG.Movement
             UpdateAnimator();
         }
 
-        public void StartMoveAction(Vector3 destination)
+        public void StartMoveAction(Vector3 destination, float speedFraction)
         {
             actionScheduler.StartAction(this);
-            MoveTo(destination);
+            MoveTo(destination, speedFraction);
         }
 
-        public void MoveTo(Vector3 destination)
+        public void MoveTo(Vector3 destination, float speedFraction)
         {
             navMeshAgent.destination = destination;
+            navMeshAgent.speed = maxSpeed * Mathf.Clamp01(speedFraction);
             navMeshAgent.isStopped = false;
         }
 
