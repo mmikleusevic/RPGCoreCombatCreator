@@ -1,4 +1,6 @@
 using RPG.Combat;
+using RPG.Core;
+using RPG.Movement;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,12 +14,16 @@ namespace RPG.Control
 
         private NavMeshAgent agent;
         private Fighter fighter;
+        private Mover mover;
+        private Health health;
         private GameObject player;
 
         private void Start()
         {
             agent = GetComponent<NavMeshAgent>();
             fighter = GetComponent<Fighter>();
+            mover = GetComponent<Mover>();
+            health = GetComponent<Health>();
             player = GameObject.FindWithTag(PLAYER_TAG);
         }
 
@@ -28,31 +34,24 @@ namespace RPG.Control
 
         private void Update()
         {
-            if (InChaseRange() && fighter.CanAttack(player))
-            {
-                agent.isStopped = false;
+            if (health.IsDead()) return;
 
-                if (DistanceToPlayer() < agent.stoppingDistance)
-                {
-                    agent.isStopped = true;
-                    fighter.Attack(player);
-                }
+            if (InAttackRange() && fighter.CanAttack(player))
+            {
+                mover.MoveTo(player.transform.position);
+                fighter.Attack(player);
             }
             else
             {
-                agent.isStopped = true;
+                mover.Cancel();
                 fighter.Cancel();
             }
         }
 
-        private bool InChaseRange()
+        private bool InAttackRange()
         {
-            return DistanceToPlayer() < chaseDistance;
-        }
-
-        private float DistanceToPlayer()
-        {
-            return Vector3.Distance(transform.position, player.transform.position);
+            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+            return distanceToPlayer < chaseDistance;
         }
     }
 }
