@@ -16,12 +16,15 @@ namespace RPG.Control
         private Health health;
         private GameObject player;
 
+        private Vector3 guardPosition;
+
         private void Start()
         {
             fighter = GetComponent<Fighter>();
             mover = GetComponent<Mover>();
             health = GetComponent<Health>();
             player = GameObject.FindWithTag(PLAYER_TAG);
+            guardPosition = transform.position;
         }
 
         private void OnDrawGizmosSelected()
@@ -41,8 +44,7 @@ namespace RPG.Control
             }
             else
             {
-                mover.Cancel();
-                fighter.Cancel();
+                mover.StartMoveAction(guardPosition);
             }
         }
 
