@@ -10,10 +10,21 @@ namespace RPG.Control
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                Transform child = transform.GetChild(i);
-                child.position = new Vector3(child.position.x, radius, child.position.z);
-                Gizmos.DrawSphere(child.position, radius);
-            }        
+                int j = GetNextIndex(i);
+                transform.GetChild(i).position = new Vector3(GetWaypoint(i).x, radius, GetWaypoint(i).z);
+                Gizmos.DrawSphere(GetWaypoint(i), radius);
+                Gizmos.DrawLine(GetWaypoint(i), GetWaypoint(j));
+            }
+        }
+
+        private int GetNextIndex(int i)
+        {
+            return (i + 1) % transform.childCount;
+        }
+
+        private Vector3 GetWaypoint(int i)
+        {
+            return transform.GetChild(i).position;
         }
     }
 }
