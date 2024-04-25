@@ -2,7 +2,6 @@ using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace RPG.Control
 {
@@ -12,7 +11,6 @@ namespace RPG.Control
 
         [SerializeField] float chaseDistance = 5f;
 
-        private NavMeshAgent agent;
         private Fighter fighter;
         private Mover mover;
         private Health health;
@@ -20,15 +18,15 @@ namespace RPG.Control
 
         private void Start()
         {
-            agent = GetComponent<NavMeshAgent>();
             fighter = GetComponent<Fighter>();
             mover = GetComponent<Mover>();
             health = GetComponent<Health>();
             player = GameObject.FindWithTag(PLAYER_TAG);
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
+            Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position, chaseDistance);
         }
 
