@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 namespace RPG.SceneManagement
@@ -8,7 +10,13 @@ namespace RPG.SceneManagement
     {
         private const string PLAYER = "Player";
 
-        [SerializeField] int sceneToLoad = -1;
+        [SerializeField] private int sceneToLoad = -1;
+        [SerializeField] private Transform spawnPoint;
+
+        private void Awake()
+        {
+            transform.parent = null;
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -22,8 +30,31 @@ namespace RPG.SceneManagement
         {
             DontDestroyOnLoad(this);
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
-            print("Scene loaded");
-            Destroy(gameObject);
+
+            Portal otherPortal = GetOtherPortal();
+            UpdatePlayer(otherPortal);
+        }
+
+        private Portal GetOtherPortal()
+        {
+
+            Portal[] portals = FindObjectsByType<Portal>(FindObjectsSortMode.None);
+            foreach (Portal portal in portals)
+            {
+                if (portal == this) continue;
+
+                return portal;
+            }
+
+            return null;
+        }
+
+        private void UpdatePlayer(Portal portal)
+        {
+            GameObject player = GameObject.FindWithTag(PLAYER);
+
+            player.GetComponent<NavMeshAgent>().Warp(portal.spawnPoint.position);
+            player.transform.rotation = portal.spawnPoint.rotation;
         }
     }
 }
