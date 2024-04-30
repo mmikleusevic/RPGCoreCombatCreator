@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,15 +10,20 @@ namespace RPG.SceneManagement
 
         [SerializeField] int sceneToLoad = -1;
 
-        private bool isTriggered = false;
-
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == PLAYER && !isTriggered)
+            if (other.gameObject.tag == PLAYER)
             {
-                isTriggered = true;
-                SceneManager.LoadScene(sceneToLoad);
+                StartCoroutine(Transition());
             }
+        }
+
+        private IEnumerator Transition()
+        {
+            DontDestroyOnLoad(this);
+            yield return SceneManager.LoadSceneAsync(sceneToLoad);
+            print("Scene loaded");
+            Destroy(gameObject);
         }
     }
 }
