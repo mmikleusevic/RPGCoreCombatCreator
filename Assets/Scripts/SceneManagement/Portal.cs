@@ -8,10 +8,16 @@ namespace RPG.SceneManagement
 {
     public class Portal : MonoBehaviour
     {
+        private enum DestinationIdentifier
+        {
+            A, B
+        }
+
         private const string PLAYER = "Player";
 
         [SerializeField] private int sceneToLoad = -1;
         [SerializeField] private Transform spawnPoint;
+        [SerializeField] private DestinationIdentifier destinationIdentifier;
 
         private void Awake()
         {
@@ -37,11 +43,10 @@ namespace RPG.SceneManagement
 
         private Portal GetOtherPortal()
         {
-
             Portal[] portals = FindObjectsByType<Portal>(FindObjectsSortMode.None);
             foreach (Portal portal in portals)
             {
-                if (portal == this) continue;
+                if (portal == this || portal.destinationIdentifier == destinationIdentifier) continue;
 
                 return portal;
             }
