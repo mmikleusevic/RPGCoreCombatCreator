@@ -27,8 +27,6 @@ namespace RPG.Cinematics
         {
             bool isTriggered = (bool)state;
 
-            Debug.Log(isTriggered);
-
             alreadyTriggered = isTriggered;
         }
     }
