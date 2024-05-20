@@ -7,18 +7,13 @@ namespace RPG.SceneManagement
     {
         [SerializeField] private CanvasGroup canvasGroup;
 
-        private void Start()
-        {
-            StartCoroutine(FadeOutIn());
-        }
-
         private IEnumerator FadeOutIn()
         {
             yield return FadeOut(3f);
             yield return FadeIn(2f);
         }
 
-        private IEnumerator FadeOut(float time)
+        public IEnumerator FadeOut(float time)
         {
             while (canvasGroup.alpha < 1)
             {
@@ -28,7 +23,7 @@ namespace RPG.SceneManagement
             }
         }
 
-        private IEnumerator FadeIn(float time)
+        public IEnumerator FadeIn(float time)
         {
             while (canvasGroup.alpha > 0)
             {
