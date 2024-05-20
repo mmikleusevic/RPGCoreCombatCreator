@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 4
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 1.0036389, g: 1.1302098, b: 1.1767607, a: 1}
+  m_IndirectSpecularColor: {r: 1.0040284, g: 1.1306685, b: 1.1773376, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1279,63 +1279,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &789178634
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4821397934999743976, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
-      propertyPath: m_Name
-      value: PersistentObjects
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159558345405433841, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15.684557
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159558345405433841, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 10.210537
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159558345405433841, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -14.275288
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159558345405433841, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159558345405433841, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159558345405433841, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159558345405433841, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159558345405433841, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159558345405433841, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159558345405433841, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
 --- !u!1 &800838838
 GameObject:
   m_ObjectHideFlags: 3
@@ -2051,11 +1994,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4247507170461294151, guid: a92c46d50e391bc49808277510e69d4b, type: 3}
   m_PrefabInstance: {fileID: 1157449515}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1167012322 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4821397934999743976, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
-  m_PrefabInstance: {fileID: 789178634}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1176301068
 GameObject:
@@ -3681,7 +3619,7 @@ PrefabInstance:
     - target: {fileID: 6311716420641923974, guid: 1c8bb0ff04cc22a4e8299057504948de, type: 3}
       propertyPath: persistentObjectPrefab
       value: 
-      objectReference: {fileID: 1167012322}
+      objectReference: {fileID: 4821397934999743976, guid: 750986ffd53fa664b8c7e3b325881304, type: 3}
     - target: {fileID: 6437760536452421235, guid: 1c8bb0ff04cc22a4e8299057504948de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 36.923134
@@ -3851,4 +3789,3 @@ SceneRoots:
   - {fileID: 6601333738436146649}
   - {fileID: 159120938}
   - {fileID: 208828868}
-  - {fileID: 789178634}

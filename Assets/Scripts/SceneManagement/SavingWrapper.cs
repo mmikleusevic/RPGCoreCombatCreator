@@ -13,8 +13,8 @@ namespace RPG.SceneManagement
         {
             Fader fader = FindFirstObjectByType<Fader>();
             fader.FadeOutImmediate();
-            yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
-            fader.FadeIn(fadeInTime);
+            yield return StartCoroutine(GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile));
+            yield return StartCoroutine(fader.FadeIn(fadeInTime));
         }
 
         void Update()
