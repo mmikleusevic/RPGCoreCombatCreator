@@ -7,10 +7,9 @@ namespace RPG.SceneManagement
     {
         [SerializeField] private CanvasGroup canvasGroup;
 
-        private IEnumerator FadeOutIn()
+        public void FadeOutImmediate()
         {
-            yield return FadeOut(3f);
-            yield return FadeIn(2f);
+            canvasGroup.alpha = 1f;
         }
 
         public IEnumerator FadeOut(float time)
