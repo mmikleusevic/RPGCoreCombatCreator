@@ -1,9 +1,10 @@
+using RPG.Saving;
 using UnityEngine;
 using UnityEngine.Playables;
 
 namespace RPG.Cinematics
 {
-    public class CinematicTrigger : MonoBehaviour
+    public class CinematicTrigger : MonoBehaviour, ISaveable
     {
         private const string PLAYER = "Player";
 
@@ -16,6 +17,19 @@ namespace RPG.Cinematics
                 alreadyTriggered = true;
                 GetComponent<PlayableDirector>().Play();
             }
+        }
+        public object CaptureState()
+        {
+            return alreadyTriggered;
+        }
+
+        public void RestoreState(object state)
+        {
+            bool isTriggered = (bool)state;
+
+            Debug.Log(isTriggered);
+
+            alreadyTriggered = isTriggered;
         }
     }
 }
