@@ -2,7 +2,6 @@ using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace RPG.Control
 {
@@ -14,7 +13,7 @@ namespace RPG.Control
         [SerializeField] private float suspicionTime = 2f;
         [SerializeField] private float waypointDwellTime = 3f;
         [SerializeField] private PatrolPath patrolPath;
-        [Range(0f, 1f)] 
+        [Range(0f, 1f)]
         [SerializeField] private float patrolSpeedFraction = 0.4f;
 
         private Fighter fighter;

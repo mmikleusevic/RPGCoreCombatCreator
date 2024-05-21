@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -67,7 +65,7 @@ namespace RPG.Saving
 
         private void CaptureState(Dictionary<string, object> state)
         {
-            foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
+            foreach (SaveableEntity saveable in FindObjectsByType<SaveableEntity>(FindObjectsSortMode.None))
             {
                 state[saveable.GetUniqueIdentifier()] = saveable.CaptureState();
             }
@@ -77,7 +75,7 @@ namespace RPG.Saving
 
         private void RestoreState(Dictionary<string, object> state)
         {
-            foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
+            foreach (SaveableEntity saveable in FindObjectsByType<SaveableEntity>(FindObjectsSortMode.None))
             {
                 string id = saveable.GetUniqueIdentifier();
                 if (state.ContainsKey(id))
