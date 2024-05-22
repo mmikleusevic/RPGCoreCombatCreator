@@ -1,5 +1,6 @@
 using RPG.Core;
 using RPG.Movement;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -88,7 +89,20 @@ namespace RPG.Combat
         private void Hit()
         {
             if (target == null) return;
-            target.TakeDamage(currentWeapon.GetWeaponDamage());
+
+            if (currentWeapon.HasProjectile())
+            {
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+            }
+            else
+            {
+                target.TakeDamage(currentWeapon.GetWeaponDamage());
+            }
+        }
+
+        private void Shoot()
+        {
+            Hit();
         }
 
         public void Cancel()
