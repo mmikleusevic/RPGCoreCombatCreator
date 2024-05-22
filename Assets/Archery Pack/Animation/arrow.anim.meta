@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5c876293b657ae14c91404ebc08e51c1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 258041
+  packageName: Archery Pack
+  packageVersion: 1.0
+  assetPath: Assets/Archery Pack/Animation/arrow.anim
+  uploadId: 593195
