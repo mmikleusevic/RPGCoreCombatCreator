@@ -61,6 +61,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+--- !u!4 &2996335921530415153 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 461188, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+  m_PrefabInstance: {fileID: 2996335921530872245}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2996335921530504367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 435482, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
@@ -114,6 +119,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1723727013695566317, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: weaponPrefab
+      value: 
+      objectReference: {fileID: 3532777041143888172, guid: db95be516c061ce49ad46e1363f1d37f, type: 3}
+    - target: {fileID: 1723727013695566317, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 2996335921530415153}
     - target: {fileID: 1723727013695566317, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
       propertyPath: timeBetweenAttacks
       value: 1

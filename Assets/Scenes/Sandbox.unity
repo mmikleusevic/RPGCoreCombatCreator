@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 1.0040284, g: 1.1306685, b: 1.1773376, a: 1}
+  m_IndirectSpecularColor: {r: 1.0036389, g: 1.1302098, b: 1.1767607, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3660,6 +3660,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8249855999495846050, guid: 1c8bb0ff04cc22a4e8299057504948de, type: 3}
+      propertyPath: weaponPrefab
+      value: 
+      objectReference: {fileID: 3532777041143888172, guid: db95be516c061ce49ad46e1363f1d37f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
