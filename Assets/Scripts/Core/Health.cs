@@ -8,21 +8,14 @@ namespace RPG.Core
         private const string DIE = "die";
 
         [SerializeField] private float healthPoints = 100f;
-
-        private Animator animator;
-        private ActionScheduler actionScheduler;
+        [SerializeField] private Animator animator;
+        [SerializeField] private ActionScheduler actionScheduler;
 
         private bool isDead = false;
 
         public bool IsDead()
         {
             return isDead;
-        }
-
-        private void Start()
-        {
-            animator = GetComponent<Animator>();
-            actionScheduler = GetComponent<ActionScheduler>();
         }
 
         public void TakeDamage(float damage)
@@ -57,7 +50,7 @@ namespace RPG.Core
 
             this.healthPoints = healthPoints;
 
-            if (healthPoints == 0)
+            if (this.healthPoints == 0)
             {
                 Die();
             }

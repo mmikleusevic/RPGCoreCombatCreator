@@ -9,9 +9,7 @@ namespace RPG.Combat
         private const string ATTACK = "attack";
         private const string STOP_ATTACK = "stopAttack";
 
-        [SerializeField] private float weaponRange = 2f;
         [SerializeField] private float timeBetweenAttacks = 2f;
-        [SerializeField] private int weaponDamage = 5;
         [SerializeField] private Transform handTransform = null;
         [SerializeField] private Weapon weapon = null;
 
@@ -50,7 +48,7 @@ namespace RPG.Combat
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+            return Vector3.Distance(transform.position, target.transform.position) < weapon.GetWeaponRange();
         }
 
         public void Attack(GameObject combatTarget)
@@ -88,7 +86,7 @@ namespace RPG.Combat
         private void Hit()
         {
             if (target == null) return;
-            target.TakeDamage(weaponDamage);
+            target.TakeDamage(weapon.GetWeaponDamage());
         }
 
         public void Cancel()
