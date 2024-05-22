@@ -10,7 +10,8 @@ namespace RPG.Combat
         private const string STOP_ATTACK = "stopAttack";
 
         [SerializeField] private float timeBetweenAttacks = 2f;
-        [SerializeField] private Transform handTransform = null;
+        [SerializeField] private Transform leftHandTransform = null;
+        [SerializeField] private Transform rightHandTransform = null;
         [SerializeField] private Weapon defaultWeapon = null;
 
         private Health target;
@@ -106,7 +107,7 @@ namespace RPG.Combat
         public void EquipWeapon(Weapon weapon) 
         {
             currentWeapon = weapon;
-            weapon.SpawnWeapon(handTransform, animator);
+            weapon.SpawnWeapon(rightHandTransform, leftHandTransform , animator);
         }
     }
 }
