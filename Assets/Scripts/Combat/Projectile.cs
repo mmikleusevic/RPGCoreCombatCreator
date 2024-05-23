@@ -4,21 +4,25 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float speed = 1f;
+    [SerializeField] private bool isHoming = true;
 
     private Health target = null;
     private float damage = 0;
+
+    private void Start()
+    {
+        transform.LookAt(GetAimLocation());
+    }
 
     private void Update()
     {
         if (target == null) return;
 
-        transform.LookAt(GetAimLocation());
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
-
-        if (Vector3.Distance(transform.position, target.transform.position) <= 0.05f)
+        if (isHoming && !target.IsDead())
         {
-            Destroy(gameObject);
+            transform.LookAt(GetAimLocation());
         }
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
     }
 
     public void SetTarget(Health target, float damage)
@@ -42,6 +46,7 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Health>() != target) return;
+        if (target.IsDead()) return;
 
         target.TakeDamage(damage);
         Destroy(gameObject);
