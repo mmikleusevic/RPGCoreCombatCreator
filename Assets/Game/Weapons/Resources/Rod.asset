@@ -18,3 +18,4 @@ MonoBehaviour:
   weaponRange: 10
   isRightHanded: 1
   projectile: {fileID: 741807628881624497, guid: 70fa31cea66a5a141a108c2cc30cdee9, type: 3}
+  defaultAnimatorController: {fileID: 9100000, guid: d79eb445d75cbf14b8fa7902146a70e3, type: 2}
