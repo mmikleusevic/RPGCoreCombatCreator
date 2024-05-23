@@ -1,5 +1,6 @@
 using Rpg.Combat;
 using RPG.Core;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -14,7 +15,7 @@ namespace RPG.Combat
         [SerializeField] private bool isRightHanded = true;
         [SerializeField] private Projectile projectile = null;
 
-        const string weaponName = "Weapon";
+        private const string weaponName = "Weapon";
 
         public void SpawnWeapon(Transform rightHand, Transform leftHand, Animator animator)
         {
@@ -27,9 +28,15 @@ namespace RPG.Combat
                 weapon.name = weaponName;
             }
 
+            AnimatorOverrideController overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
+
             if (animatorOverride != null)
             {
                 animator.runtimeAnimatorController = animatorOverride;
+            }
+            else if (overrideController != null)
+            {
+                animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
             }
         }
 
