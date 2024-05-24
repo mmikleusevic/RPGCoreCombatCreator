@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Rpg.Core
+namespace RPG.Core
 {
     public class PersistentObjectSpawner : MonoBehaviour
     {
