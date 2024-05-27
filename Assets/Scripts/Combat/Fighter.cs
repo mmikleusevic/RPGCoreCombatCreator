@@ -1,3 +1,4 @@
+using RPG.Attributes;
 using RPG.Core;
 using RPG.Movement;
 using RPG.Saving;
@@ -121,10 +122,10 @@ namespace RPG.Combat
             animator.ResetTrigger(ATTACK);
         }
 
-        public void EquipWeapon(Weapon weapon) 
+        public void EquipWeapon(Weapon weapon)
         {
             currentWeapon = weapon;
-            weapon.SpawnWeapon(rightHandTransform, leftHandTransform , animator);
+            weapon.SpawnWeapon(rightHandTransform, leftHandTransform, animator);
         }
 
         public object CaptureState()

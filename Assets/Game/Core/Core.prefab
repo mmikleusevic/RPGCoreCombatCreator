@@ -313,6 +313,10 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7985954486065843652, guid: b30df9fba0840cb46995c8525efaef18, type: 3}
+      propertyPath: startingLevel
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7027993323478507108, guid: b30df9fba0840cb46995c8525efaef18, type: 3}
     - {fileID: 728374763983200151, guid: b30df9fba0840cb46995c8525efaef18, type: 3}
