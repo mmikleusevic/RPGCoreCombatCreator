@@ -1,6 +1,7 @@
 using RPG.Core;
 using RPG.Saving;
 using RPG.Stats;
+using System;
 using UnityEngine;
 
 namespace RPG.Attributes
@@ -25,17 +26,19 @@ namespace RPG.Attributes
             return isDead;
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(GameObject instigator, float damage)
         {
             healthPoints = Mathf.Max(0, healthPoints - damage);
 
             if (healthPoints == 0 && !isDead)
             {
                 Die();
+                AwardExperience(instigator);
             }
 
             print(healthPoints);
         }
+
 
         public float GetPercentage()
         {
@@ -49,6 +52,15 @@ namespace RPG.Attributes
             isDead = true;
             animator.SetTrigger(DIE);
             actionScheduler.CancelCurrentAction();
+        }
+
+        private void AwardExperience(GameObject instigator)
+        {
+            Experience experience = instigator.GetComponent<Experience>();
+
+            if (experience == null) return;
+
+            experience.GainExperience(GetComponent<BaseStats>().GetExperienceReward());
         }
 
         public object CaptureState()
