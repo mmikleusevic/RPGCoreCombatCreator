@@ -19,7 +19,6 @@ namespace RPG.Combat
         private Health target;
         private Mover mover;
         private ActionScheduler actionScheduler;
-        private Animator animator;
         private Weapon currentWeapon = null;
 
         private float timeSinceLastAttack = Mathf.Infinity;
@@ -28,7 +27,6 @@ namespace RPG.Combat
         {
             mover = GetComponent<Mover>();
             actionScheduler = GetComponent<ActionScheduler>();
-            animator = GetComponent<Animator>();
 
             if (currentWeapon == null)
             {
@@ -85,6 +83,8 @@ namespace RPG.Combat
 
         private void TriggerAttack()
         {
+            Animator animator = GetComponent<Animator>();
+
             animator.ResetTrigger(STOP_ATTACK);
             animator.SetTrigger(ATTACK);
         }
@@ -118,6 +118,8 @@ namespace RPG.Combat
 
         private void TriggerStopAttack()
         {
+            Animator animator = GetComponent<Animator>();
+
             animator.SetTrigger(STOP_ATTACK);
             animator.ResetTrigger(ATTACK);
         }
@@ -125,7 +127,7 @@ namespace RPG.Combat
         public void EquipWeapon(Weapon weapon)
         {
             currentWeapon = weapon;
-            weapon.SpawnWeapon(rightHandTransform, leftHandTransform, animator);
+            weapon.SpawnWeapon(rightHandTransform, leftHandTransform, GetComponent<Animator>());
         }
 
         public Health GetTarget()
