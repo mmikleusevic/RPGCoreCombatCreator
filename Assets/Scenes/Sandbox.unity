@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 1.0036389, g: 1.1302098, b: 1.1767912, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4000,6 +4000,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Core
       objectReference: {fileID: 0}
+    - target: {fileID: 4056049053593916567, guid: 1c8bb0ff04cc22a4e8299057504948de, type: 3}
+      propertyPath: startingLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494500266563987881, guid: 1c8bb0ff04cc22a4e8299057504948de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.220001
+      objectReference: {fileID: 0}
     - target: {fileID: 6311716420641923974, guid: 1c8bb0ff04cc22a4e8299057504948de, type: 3}
       propertyPath: persistentObjectPrefab
       value: 
@@ -4044,6 +4052,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7098445284617435922, guid: 1c8bb0ff04cc22a4e8299057504948de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.78
+      objectReference: {fileID: 0}
     - target: {fileID: 8249855999495846050, guid: 1c8bb0ff04cc22a4e8299057504948de, type: 3}
       propertyPath: weaponPrefab
       value: 
@@ -4052,6 +4064,10 @@ PrefabInstance:
       propertyPath: defaultWeapon
       value: 
       objectReference: {fileID: 11400000, guid: 6ffc60568c318b0469e303ab7006a216, type: 2}
+    - target: {fileID: 8525244401079502329, guid: 1c8bb0ff04cc22a4e8299057504948de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.220001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
