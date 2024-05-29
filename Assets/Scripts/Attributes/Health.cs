@@ -9,15 +9,18 @@ namespace RPG.Attributes
     {
         private const string DIE = "die";
 
-        [SerializeField] private float healthPoints = 100f;
         [SerializeField] private Animator animator;
         [SerializeField] private ActionScheduler actionScheduler;
 
+        private float healthPoints = -1f;
         private bool isDead = false;
 
         private void Start()
         {
-            healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+            if (healthPoints < 0)
+            {
+                healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+            }
         }
 
         public bool IsDead()
