@@ -1,13 +1,17 @@
+using System;
 using UnityEngine;
 
 namespace RPG.Stats
 {
     public class BaseStats : MonoBehaviour
     {
+        public event Action OnLevelUp;
+
         [Range(1, 99)]
         [SerializeField] private int startingLevel = 1;
         [SerializeField] CharacterClass characterClass;
         [SerializeField] Progression progression = null;
+        [SerializeField] private GameObject levelUpParticleEffect = null;
 
         private int currentLevel = 0;
 
@@ -17,7 +21,7 @@ namespace RPG.Stats
             Experience experience = GetComponent<Experience>();
             if (experience != null)
             {
-                experience.onExperienceGained += UpdateLevel;
+                experience.OnExperienceGained += UpdateLevel;
             }
         }
 
@@ -27,8 +31,14 @@ namespace RPG.Stats
             if (newLevel > currentLevel)
             {
                 currentLevel = newLevel;
-                print("Leveled up");
+                LevelUpEffect();
+                OnLevelUp?.Invoke();
             }
+        }
+
+        private void LevelUpEffect()
+        {
+            Instantiate(levelUpParticleEffect, transform);
         }
 
         public float GetStat(Stat stat)

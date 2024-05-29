@@ -9,6 +9,7 @@ namespace RPG.Attributes
     {
         private const string DIE = "die";
 
+        [SerializeField] float regenerationPercentage = 70f;
         [SerializeField] private Animator animator;
         [SerializeField] private ActionScheduler actionScheduler;
 
@@ -17,9 +18,12 @@ namespace RPG.Attributes
 
         private void Start()
         {
+            BaseStats baseStats = GetComponent<BaseStats>();
+            baseStats.OnLevelUp += RegenerateHealth;
+
             if (healthPoints < 0)
             {
-                healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+                healthPoints = baseStats.GetStat(Stat.Health);
             }
         }
 
@@ -63,6 +67,12 @@ namespace RPG.Attributes
             if (experience == null) return;
 
             experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
+        }
+
+        private void RegenerateHealth()
+        {
+            float regenHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health) * regenerationPercentage / 100;
+            healthPoints = Mathf.Max(healthPoints, regenHealthPoints);
         }
 
         public object CaptureState()

@@ -164,6 +164,10 @@ PrefabInstance:
       propertyPath: characterClass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6764252552587697624, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: levelUpParticleEffect
+      value: 
+      objectReference: {fileID: 2220153592457363325, guid: d36fa58d5ce8b6d46a1c3dfd2623e4ee, type: 3}
     - target: {fileID: 6944710460972312987, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
       propertyPath: m_Name
       value: Player
