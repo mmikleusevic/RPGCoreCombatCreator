@@ -3,11 +3,12 @@ using RPG.Core;
 using RPG.Movement;
 using RPG.Saving;
 using RPG.Stats;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable
+    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
     {
         private const string ATTACK = "attack";
         private const string STOP_ATTACK = "stopAttack";
@@ -125,6 +126,14 @@ namespace RPG.Combat
 
             animator.SetTrigger(STOP_ATTACK);
             animator.ResetTrigger(ATTACK);
+        }
+
+        public IEnumerable<float> GetAdditiveModifier(Stat stat)
+        {
+            if (stat == Stat.Damage)
+            {
+                yield return currentWeapon.GetWeaponDamage();
+            }
         }
 
         public void EquipWeapon(Weapon weapon)

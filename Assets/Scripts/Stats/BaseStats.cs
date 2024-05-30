@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Stats
@@ -43,7 +45,7 @@ namespace RPG.Stats
 
         public float GetStat(Stat stat)
         {
-            return progression.GetStat(stat, characterClass, GetLevel());
+            return progression.GetStat(stat, characterClass, GetLevel()) + GetAdditiveModifier(stat);
         }
 
         public int GetLevel()
@@ -56,7 +58,24 @@ namespace RPG.Stats
             return currentLevel;
         }
 
-        public int CalculateLevel()
+        private float GetAdditiveModifier(Stat stat)
+        {
+            float sum = 0;
+
+            IModifierProvider[] providers = GetComponents<IModifierProvider>();
+            foreach (IModifierProvider provider in providers)
+            {
+                IEnumerable<float> additiveModifiers = provider.GetAdditiveModifier(stat);
+                foreach (float modifiers in additiveModifiers)
+                {
+                    sum += modifiers;
+                }
+            }
+
+            return sum;
+        }
+
+        private int CalculateLevel()
         {
             Experience experience = GetComponent<Experience>();
 
