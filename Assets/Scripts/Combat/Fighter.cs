@@ -25,11 +25,14 @@ namespace RPG.Combat
 
         private float timeSinceLastAttack = Mathf.Infinity;
 
-        private void Start()
+        private void Awake()
         {
             mover = GetComponent<Mover>();
             actionScheduler = GetComponent<ActionScheduler>();
+        }
 
+        private void Start()
+        {
             if (currentWeapon == null)
             {
                 EquipWeapon(defaultWeapon);
