@@ -10,10 +10,11 @@ namespace RPG.Stats
         public event Action OnLevelUp;
 
         [Range(1, 99)]
-        [SerializeField] private int startingLevel = 1;
-        [SerializeField] CharacterClass characterClass;
-        [SerializeField] Progression progression = null;
         [SerializeField] private GameObject levelUpParticleEffect = null;
+        [SerializeField] Progression progression = null;
+        [SerializeField] CharacterClass characterClass;
+        [SerializeField] private int startingLevel = 1;
+        [SerializeField] private bool shouldUseModifiers = false;
 
         private int currentLevel = 0;
 
@@ -45,7 +46,12 @@ namespace RPG.Stats
 
         public float GetStat(Stat stat)
         {
-            return progression.GetStat(stat, characterClass, GetLevel()) + GetAdditiveModifier(stat);
+            return (GetBaseStat(stat) + GetAdditiveModifier(stat)) * (1 + GetPercentageModifier(stat) / 100);
+        }
+
+        private float GetBaseStat(Stat stat)
+        {
+            return progression.GetStat(stat, characterClass, GetLevel());
         }
 
         public int GetLevel()
@@ -60,12 +66,33 @@ namespace RPG.Stats
 
         private float GetAdditiveModifier(Stat stat)
         {
+            if (!shouldUseModifiers) return 0;
+
             float sum = 0;
 
             IModifierProvider[] providers = GetComponents<IModifierProvider>();
             foreach (IModifierProvider provider in providers)
             {
-                IEnumerable<float> additiveModifiers = provider.GetAdditiveModifier(stat);
+                IEnumerable<float> additiveModifiers = provider.GetAdditiveModifiers(stat);
+                foreach (float modifiers in additiveModifiers)
+                {
+                    sum += modifiers;
+                }
+            }
+
+            return sum;
+        }
+
+        private float GetPercentageModifier(Stat stat)
+        {
+            if (!shouldUseModifiers) return 0;
+
+            float sum = 0;
+
+            IModifierProvider[] providers = GetComponents<IModifierProvider>();
+            foreach (IModifierProvider provider in providers)
+            {
+                IEnumerable<float> additiveModifiers = provider.GetPercentageModifiers(stat);
                 foreach (float modifiers in additiveModifiers)
                 {
                     sum += modifiers;
