@@ -13,18 +13,31 @@ namespace RPG.Attributes
         [SerializeField] private Animator animator;
         [SerializeField] private ActionScheduler actionScheduler;
 
+        private BaseStats baseStats;
         private float healthPoints = -1f;
         private bool isDead = false;
 
+        private void Awake()
+        {
+            baseStats = GetComponent<BaseStats>();
+        }
+
         private void Start()
         {
-            BaseStats baseStats = GetComponent<BaseStats>();
-            baseStats.OnLevelUp += RegenerateHealth;
-
             if (healthPoints < 0)
             {
                 healthPoints = baseStats.GetStat(Stat.Health);
             }
+        }
+
+        private void OnEnable()
+        {
+            baseStats.OnLevelUp += RegenerateHealth;
+        }
+
+        private void OnDisable()
+        {
+            baseStats.OnLevelUp -= RegenerateHealth;
         }
 
         public bool IsDead()
@@ -52,13 +65,13 @@ namespace RPG.Attributes
 
         public float GetMaxHealthPoints()
         {
-            return GetComponent<BaseStats>().GetStat(Stat.Health);
+            return baseStats.GetStat(Stat.Health);
         }
 
 
         public float GetPercentage()
         {
-            return healthPoints / GetComponent<BaseStats>().GetStat(Stat.Health) * 100;
+            return healthPoints / baseStats.GetStat(Stat.Health) * 100;
         }
 
         private void Die()
@@ -76,12 +89,12 @@ namespace RPG.Attributes
 
             if (experience == null) return;
 
-            experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
+            experience.GainExperience(baseStats.GetStat(Stat.ExperienceReward));
         }
 
         private void RegenerateHealth()
         {
-            float regenHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health) * regenerationPercentage / 100;
+            float regenHealthPoints = baseStats.GetStat(Stat.Health) * regenerationPercentage / 100;
             healthPoints = Mathf.Max(healthPoints, regenHealthPoints);
         }
 

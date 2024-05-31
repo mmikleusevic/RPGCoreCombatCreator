@@ -16,15 +16,32 @@ namespace RPG.Stats
         [SerializeField] private int startingLevel = 1;
         [SerializeField] private bool shouldUseModifiers = false;
 
+        private Experience experience;
         private int currentLevel = 0;
+
+        private void Awake()
+        {
+            experience = GetComponent<Experience>();
+        }
 
         private void Start()
         {
             currentLevel = CalculateLevel();
-            Experience experience = GetComponent<Experience>();
+        }
+
+        private void OnEnable()
+        {
             if (experience != null)
             {
                 experience.OnExperienceGained += UpdateLevel;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (experience != null)
+            {
+                experience.OnExperienceGained -= UpdateLevel;
             }
         }
 
@@ -104,8 +121,6 @@ namespace RPG.Stats
 
         private int CalculateLevel()
         {
-            Experience experience = GetComponent<Experience>();
-
             if (experience == null) return startingLevel;
 
             float currentXP = experience.GetExperiencePoints();
