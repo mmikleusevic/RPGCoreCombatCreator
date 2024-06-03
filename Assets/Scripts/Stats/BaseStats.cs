@@ -1,3 +1,4 @@
+using GameDevTV.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,16 +18,17 @@ namespace RPG.Stats
         [SerializeField] private bool shouldUseModifiers = false;
 
         private Experience experience;
-        private int currentLevel = 0;
+        private LazyValue<int> currentLevel;
 
         private void Awake()
         {
+            currentLevel = new LazyValue<int>(CalculateLevel);
             experience = GetComponent<Experience>();
         }
 
         private void Start()
         {
-            currentLevel = CalculateLevel();
+            currentLevel.ForceInit();
         }
 
         private void OnEnable()
@@ -48,9 +50,9 @@ namespace RPG.Stats
         private void UpdateLevel()
         {
             int newLevel = CalculateLevel();
-            if (newLevel > currentLevel)
+            if (newLevel > currentLevel.value)
             {
-                currentLevel = newLevel;
+                currentLevel.value = newLevel;
                 LevelUpEffect();
                 OnLevelUp?.Invoke();
             }
@@ -73,12 +75,7 @@ namespace RPG.Stats
 
         public int GetLevel()
         {
-            if (currentLevel < 1)
-            {
-                currentLevel = CalculateLevel();
-            }
-
-            return currentLevel;
+            return currentLevel.value;
         }
 
         private float GetAdditiveModifier(Stat stat)
