@@ -13,14 +13,6 @@ namespace RPG.Control
         private Fighter fighter;
         private Health health;
 
-        private enum CursorType
-        {
-            None,
-            Movement,
-            Combat,
-            UI
-        }
-
         [Serializable]
         private struct CursorMapping
         {
@@ -75,7 +67,7 @@ namespace RPG.Control
                 {
                     if (raycast.HandleRaycast(this))
                     {
-                        SetCursor(CursorType.Combat);
+                        SetCursor(raycast.GetCursorType());
                         return true;
                     }
                 }
