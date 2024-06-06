@@ -196,6 +196,34 @@ PrefabInstance:
       propertyPath: actionScheduler
       value: 
       objectReference: {fileID: 6493442635602637777}
+    - target: {fileID: 8823487103311582656, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823487103311582656, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823487103311582656, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: -4831399574982816467, guid: a92c46d50e391bc49808277510e69d4b, type: 3}
+    - target: {fileID: 8823487103311582656, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823487103311582656, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Aggrevate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823487103311582656, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: RPG.Control.AIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823487103311582656, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8399970883514774819, guid: cbd99e59055a4194fb8946f49e0f6a9a, type: 3}
@@ -261,7 +289,6 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: 89f40d0702ab04b4eaa85fc24b20959b, type: 3}
     hotspot: {x: 0, y: 0}
   maxNavMeshProjectionDistance: 1
-  maxNavPathLength: 40
 --- !u!136 &728374763983200151
 CapsuleCollider:
   m_ObjectHideFlags: 0
