@@ -22,7 +22,7 @@ namespace RPG.SceneManagement
             yield return StartCoroutine(savingSystem.LoadLastScene(defaultSaveFile));
             Fader fader = FindFirstObjectByType<Fader>();
             fader.FadeOutImmediate();
-            yield return StartCoroutine(fader.FadeIn(fadeInTime));
+            fader.FadeIn(fadeInTime);
         }
 
         void Update()

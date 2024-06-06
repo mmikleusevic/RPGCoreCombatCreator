@@ -15,6 +15,7 @@ namespace RPG.Attributes
         [SerializeField] private Animator animator;
         [SerializeField] private ActionScheduler actionScheduler;
         [SerializeField] private UnityEvent<float> takeDamage;
+        [SerializeField] private UnityEvent onDie;
 
         private BaseStats baseStats;
         private LazyValue<float> healthPoints;
@@ -59,6 +60,7 @@ namespace RPG.Attributes
             if (healthPoints.value == 0 && !isDead)
             {
                 Die();
+                onDie?.Invoke();
                 AwardExperience(instigator);
             }
         }
