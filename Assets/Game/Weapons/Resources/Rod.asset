@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rod
   m_EditorClassIdentifier: 
   animatorOverride: {fileID: 22100000, guid: e93e90dab0301f3498b992b0bbfce424, type: 2}
-  equippedPrefab: {fileID: 1808867545536256033, guid: 133ea9c0c4561b2458c013db9c84faac, type: 3}
+  equippedPrefab: {fileID: 4580645110900577682, guid: 4a1eec182ff9e1f42883e7aa01bd6a40, type: 3}
   weaponDamage: 15
   percentageBonus: 15
   weaponRange: 10

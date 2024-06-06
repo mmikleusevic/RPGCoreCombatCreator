@@ -8,7 +8,7 @@ namespace RPG.Combat
     {
         private const string PLAYER = "Player";
 
-        [SerializeField] private Weapon weapon = null;
+        [SerializeField] private WeaponConfig weapon = null;
         [SerializeField] private float respawnTime = 10f;
 
         private void OnTriggerEnter(Collider other)
