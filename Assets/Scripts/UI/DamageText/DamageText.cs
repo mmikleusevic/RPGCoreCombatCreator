@@ -7,5 +7,10 @@ namespace RPG.UI.DamageText
     {
 
         [SerializeField] private Text damageText;
+
+        public void SetValue(float amount)
+        {
+            damageText.text = string.Format("{0:0}", amount);
+        }
     }
 }
