@@ -11,7 +11,7 @@ namespace RPG.Stats
 
         private Dictionary<CharacterClass, Dictionary<Stat, float[]>> lookupTable = null;
 
-        public float GetStat(Stat stat , CharacterClass characterClass, int level)
+        public float GetStat(Stat stat, CharacterClass characterClass, int level)
         {
             BuildLookup();
 

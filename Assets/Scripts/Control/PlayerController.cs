@@ -54,7 +54,7 @@ namespace RPG.Control
             {
                 SetCursor(CursorType.UI);
                 return true;
-            } 
+            }
 
             return false;
         }

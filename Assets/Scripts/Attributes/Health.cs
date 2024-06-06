@@ -76,7 +76,12 @@ namespace RPG.Attributes
 
         public float GetPercentage()
         {
-            return healthPoints.value / baseStats.GetStat(Stat.Health) * 100;
+            return 100 * GetFraction();
+        }
+
+        public float GetFraction()
+        {
+            return healthPoints.value / baseStats.GetStat(Stat.Health);
         }
 
         private void Die()
@@ -105,16 +110,14 @@ namespace RPG.Attributes
 
         public object CaptureState()
         {
-            return healthPoints;
+            return healthPoints.value;
         }
 
         public void RestoreState(object state)
         {
-            float healthPoints = (float)state;
+            healthPoints.value = (float)state;
 
-            this.healthPoints.value = healthPoints;
-
-            if (this.healthPoints.value == 0)
+            if (healthPoints.value == 0)
             {
                 Die();
             }
