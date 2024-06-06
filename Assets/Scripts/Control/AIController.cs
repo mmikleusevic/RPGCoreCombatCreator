@@ -3,6 +3,7 @@ using RPG.Attributes;
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
+using System;
 using UnityEngine;
 
 namespace RPG.Control
@@ -31,6 +32,7 @@ namespace RPG.Control
         private float waypointTolerance = 1f;
         private float timeSinceArrivedAtWaypoint = Mathf.Infinity;
         private float timeSinceAggrevated = Mathf.Infinity;
+        private float shoutDistance = 5f;
 
         private void Awake()
         {
@@ -132,6 +134,21 @@ namespace RPG.Control
         {
             timeSinceLastSawPlayer = 0;
             fighter.Attack(player);
+
+            AggrevateNearbyEnemies();
+        }
+
+        private void AggrevateNearbyEnemies()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);
+
+            foreach (RaycastHit hit in hits)
+            {
+                AIController enemy = hit.collider.GetComponent<AIController>();
+                if (enemy == null) continue;
+
+                enemy.Aggrevate();
+            }
         }
 
         private bool IsAggrevated()
