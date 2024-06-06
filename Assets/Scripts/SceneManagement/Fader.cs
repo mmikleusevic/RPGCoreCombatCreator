@@ -14,12 +14,12 @@ namespace RPG.SceneManagement
             canvasGroup.alpha = 1f;
         }
 
-        private IEnumerator Fade(float target, float time)
+        private Coroutine Fade(float target, float time)
         {
             if (currentActiveFade != null) StopCoroutine(currentActiveFade);
 
             currentActiveFade = StartCoroutine(FadeRoutine(target, time));
-            yield return currentActiveFade;
+            return currentActiveFade;
         }
 
         private IEnumerator FadeRoutine(float target, float time)
@@ -31,12 +31,12 @@ namespace RPG.SceneManagement
             }
         }
 
-        public IEnumerator FadeOut(float time)
+        public Coroutine FadeOut(float time)
         {
             return Fade(1f, time);
         }
 
-        public IEnumerator FadeIn(float time)
+        public Coroutine FadeIn(float time)
         {
             return Fade(0f, time);
         }
